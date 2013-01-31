@@ -14,7 +14,24 @@
 @synthesize suit = _suit;
 //@synthesize rank = _rank ;
 
-
+- (int) match: (NSArray *)otherCards {
+    // The cards are never going to match with a single deck
+    
+    int score = 0 ;
+    
+    if ([otherCards count] == 1) {
+        PlayingCard *otherCard = [otherCards lastObject];
+        if ([otherCard.suit isEqualToString:self.suit])
+        {
+            score = 1  ;
+        } //if
+        else if ( otherCard.rank == self.rank) {
+            // rarer to match rank than suits so higher score ;
+            score = 4;
+        } //else-if
+    }//if
+    return score ;
+}//eom
 
 - (NSString *) contents
 {

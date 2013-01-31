@@ -8,14 +8,12 @@
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
-#import "PlayingCard.h"
-
-
 
 @interface CardGameViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipsCount;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 
 @property (strong, nonatomic) PlayingCardDeck *deck ;
 
@@ -25,8 +23,21 @@
 
 @implementation CardGameViewController
 
+- (void) setCardButtons:(NSArray *)cardButtons
+{
+    if (cardButtons)
+        _cardButtons = cardButtons ;
+    
+    for (UIButton *cardButton in self.cardButtons)
+    {
+        Card *card = [self.deck drawRandomCard];
+        [cardButton setTitle:card.contents forState:UIControlStateSelected];
+//        [cardButton setImage:<#(UIImage *)#> forState:UIControlStateNormal] ;
+        
+    }
+}
 
-- (PlayingCardDeck *) deck {
+- (Deck *) deck {
     // Just initalize when needed if not already done.
     if (!_deck)
         _deck = [[PlayingCardDeck alloc] init];
@@ -49,9 +60,10 @@
 
     if (!sender.selected ) {
         
-    PlayingCard *card = (PlayingCard *)[[self deck] drawRandomCard]    ;
-
-    NSString *title = [ [PlayingCard rankStrings][card.rank] stringByAppendingString: [card suit] ] ;
+    Card *card =[[self deck] drawRandomCard]    ;
+        
+        
+    NSString *title = card.contents ;
     
     [sender setTitle:title forState:UIControlStateSelected ] ;
     
