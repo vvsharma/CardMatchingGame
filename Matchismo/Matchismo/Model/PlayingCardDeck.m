@@ -32,14 +32,9 @@
                 
                 [self addCard:card atTop:YES]; // add this card to the deck
             
-            }
-                
-                
+            }              
         }
-    
-
     }
-
 return self;
 }
 

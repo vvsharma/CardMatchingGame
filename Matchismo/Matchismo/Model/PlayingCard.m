@@ -41,7 +41,6 @@
     
 }
 
-
 - (void) setSuit : (NSString *) suit
 {
     // we use the class method of the PlayingCard class.

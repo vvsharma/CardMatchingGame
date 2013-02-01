@@ -71,7 +71,7 @@
 
 - (void) flipCardAtIndex: (NSUInteger ) index
 {
-    // this does the matchig as well
+    // this does the matching as well
     
     Card *card = [self cardAtIndex:index];
     
@@ -81,7 +81,7 @@
             {
              if (otherCard.isFaceUp && !otherCard.isUnPlayable)
              {
-                int matchScore  = [card match:@[otherCard]] ; //only works in >=iOS6
+                int matchScore  = [card match:@[otherCard]] ; //this array initialization only works in >=iOS6
                 if (matchScore) {                    
                     card.unPlayable = YES;
                     otherCard.unPlayable = YES;
