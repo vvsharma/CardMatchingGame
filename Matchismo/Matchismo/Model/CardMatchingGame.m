@@ -23,7 +23,10 @@
 
 - (NSString *) flipMessage
 {
-    if (!_flipMessage) _flipMessage = @"Please select another card to match.";
+    
+    if (!_flipMessage  )
+        _flipMessage = @"Please select another card to match." ;
+    
     return _flipMessage ;
 }
 

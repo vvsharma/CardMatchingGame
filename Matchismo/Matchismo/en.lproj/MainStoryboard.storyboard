@@ -203,12 +203,6 @@
                                     <action selector="flipCard:" destination="2" eventType="touchUpInside" id="U9M-Iv-vsy"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" Score : 0" borderStyle="bezel" textAlignment="right" minimumFontSize="17" id="FAH-EJ-zuG">
-                                <rect key="frame" x="641" y="963" width="107" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Ov-fi-S8p">
                                 <rect key="frame" x="213" y="666" width="151" height="188"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -269,12 +263,6 @@
                                     <action selector="flipCard:" destination="2" eventType="touchUpInside" id="62j-Sh-IVi"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10 and 8 don't match. 2 Point penalty." borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" id="vtz-H9-p9I">
-                                <rect key="frame" x="149" y="963" width="458" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fDt-gv-fbS">
                                 <rect key="frame" x="348" y="877" width="73" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -290,13 +278,27 @@
                                     <action selector="dealButton:" destination="2" eventType="touchUpInside" id="j3N-Ld-2h4"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Score:0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PF0-Ma-ys5">
+                                <rect key="frame" x="641" y="963" width="107" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="New Game!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O4i-QZ-3ka">
+                                <rect key="frame" x="155" y="963" width="458" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="flipMessageLabel" destination="vtz-H9-p9I" id="qQD-VR-Pt4"/>
+                        <outlet property="flipMessageLabel" destination="O4i-QZ-3ka" id="ddW-rs-IRO"/>
                         <outlet property="flipsLabel" destination="csi-ox-9i2" id="4xz-Mb-fgw"/>
-                        <outlet property="scoreLabel" destination="FAH-EJ-zuG" id="6Qs-p9-0Qs"/>
+                        <outlet property="scoreLabel" destination="PF0-Ma-ys5" id="gkv-1a-x9a"/>
                         <outletCollection property="cardButtons" destination="hDD-3O-g2A" id="h5j-aZ-suh"/>
                         <outletCollection property="cardButtons" destination="v3o-wX-bgM" id="UDp-rw-N0P"/>
                         <outletCollection property="cardButtons" destination="zjD-LM-RU0" id="ero-4t-03K"/>
@@ -320,6 +322,19 @@
             <point key="canvasLocation" x="127" y="-536"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CardGameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CardGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dealButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="flipMessageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

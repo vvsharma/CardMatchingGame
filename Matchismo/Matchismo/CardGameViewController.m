@@ -18,8 +18,8 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 - (IBAction)dealButton:(UIButton *)sender;
 
-@property (weak, nonatomic) IBOutlet UITextField *scoreLabel;
-@property (weak, nonatomic) IBOutlet UITextField *flipMessageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *flipMessageLabel;
 
 @property (strong, nonatomic) CardMatchingGame *game ;
 
@@ -28,21 +28,17 @@
 @end
 
 @implementation CardGameViewController
-@synthesize game = _game;
-
-- (void) setGame : (CardMatchingGame *) newGame ;
-{
-    _game = newGame ;
-    
-}
 
 
 - (CardMatchingGame *) game
 {
-    if (!_game) // do this the first time only
+    if (!_game) // do this the first time only Layout the cards and Set the starting message
     {
+        
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingdeck:[[PlayingCardDeck alloc] init]];
+        
+
     }
     return _game ;
 }
@@ -78,8 +74,9 @@
     }
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    
     // update flip message
-    self.flipMessageLabel.text = [NSString stringWithFormat:@"%@", self.game.flipMessage ];
+    if (self.flipsCount != 0 ) self.flipMessageLabel.text = [NSString stringWithFormat:@"%@", self.game.flipMessage ];
     
 }
 
@@ -87,13 +84,15 @@
 {
 
     _flipsCount = flipsCount ;
-
-    self.flipsLabel.text = [ NSString stringWithFormat:@"Flips : %d", self.flipsCount ] ;
+    
+    if (_flipsCount != 0 )
+        self.flipsLabel.text = [ NSString stringWithFormat:@"Flips: %d", self.flipsCount ] ;
     
 }
 
 - (IBAction)flipCard:(UIButton *)sender
 {
+    
 
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     
@@ -107,11 +106,11 @@
 
 - (IBAction)dealButton:(UIButton *)sender {
     
-    
-    CardMatchingGame *newGame = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingdeck:[[PlayingCardDeck alloc] init]];
-    
-    self.game = newGame ;
-    
+    self.flipsCount = 0 ;
+     
+    self.flipMessageLabel.text =  @"New deal!" ;
+    self.flipsLabel.text = @"Flips: 0"; 
+    self.game = nil;
     [self updateUI]; 
     
     

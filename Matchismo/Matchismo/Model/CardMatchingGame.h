@@ -24,15 +24,4 @@
 - (id) initWithCardCount:(NSUInteger) count
                usingdeck:(Deck *) deck ;
 
-
-
-
-
-
-
-
-
-
-
-
 @end
