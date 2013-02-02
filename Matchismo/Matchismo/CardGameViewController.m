@@ -16,6 +16,8 @@
 @property (nonatomic) int flipsCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 
+@property (weak, nonatomic) IBOutlet UITextField *scoreLabel;
+
 @property (strong, nonatomic) CardMatchingGame *game ;
 
 // @property (nonatomic) NSString *selectedCardTitle ;
@@ -63,6 +65,8 @@
         cardButton.alpha = ( card.isUnPlayable ? 0.3 : 1.0 );
     }
     
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    
     
 }
 
@@ -83,6 +87,8 @@
     
     self.flipsCount++;
     [self updateUI] ;
+    
+    
 }
 
 
