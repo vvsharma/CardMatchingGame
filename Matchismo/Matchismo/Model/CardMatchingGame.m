@@ -14,10 +14,18 @@
 @property (nonatomic, readwrite) int score ; // it is readwrite for private but read only for the public
 
 @property (nonatomic, strong) NSMutableArray *cards; // of cards
-
+@property (nonatomic, readwrite) NSString *flipMessage ; // it is readwrite for private but read only for the public
 @end
 
+
+
 @implementation CardMatchingGame
+
+- (NSString *) flipMessage
+{
+    if (!_flipMessage) _flipMessage = @"Please select another card to match.";
+    return _flipMessage ;
+}
 
 
 - (NSMutableArray *) cards
@@ -64,7 +72,7 @@
     
 }
 
-#define MATCH_BONUS      4    // Bonus for finding he right matchng card
+#define MATCH_BONUS      4    // Bonus for finding he right matching card
 #define MISMATCH_PENALTY 2    // penalty if the cards don't match
 #define FLIP_COST 1 // cost of flipping too much
 
@@ -86,10 +94,16 @@
                     card.unPlayable = YES;
                     otherCard.unPlayable = YES;
                     self.score += matchScore * MATCH_BONUS ;
+                    
+                    self.flipMessage = [NSString stringWithFormat:@"You matched %@ with %@  for %d points",  otherCard.contents, card.contents,(MATCH_BONUS -1)]  ;
+                    
                 }
                 else {
                     otherCard.faceUp = NO; // no match. So turn the card face down
                     self.score -= MISMATCH_PENALTY ;
+                    
+                    self.flipMessage =  [NSString stringWithFormat:@"Your cards %@ and %@  don't match! %d points penalty!",  otherCard.contents, card.contents,(MISMATCH_PENALTY +1) ] ;
+                    
                 }// else
                  break ; // out of for
              }//if

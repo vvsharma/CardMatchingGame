@@ -14,6 +14,7 @@
 @interface CardMatchingGame : NSObject
 
 @property (readonly, nonatomic) int score ;
+@property (readonly, nonatomic) NSString *flipMessage ;
 
 - (void) flipCardAtIndex: (NSUInteger ) index ;
 

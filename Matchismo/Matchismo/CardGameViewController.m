@@ -13,14 +13,16 @@
 @interface CardGameViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+
 @property (nonatomic) int flipsCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 
 @property (weak, nonatomic) IBOutlet UITextField *scoreLabel;
+@property (weak, nonatomic) IBOutlet UITextField *flipMessageLabel;
 
 @property (strong, nonatomic) CardMatchingGame *game ;
 
-// @property (nonatomic) NSString *selectedCardTitle ;
+
 
 @end
 
@@ -47,7 +49,7 @@
 }
 
 - (void) updateUI {
-
+    
     // make sure the UI match the model and vice versa
     for ( UIButton *cardButton in self.cardButtons) {
         
@@ -63,13 +65,14 @@
         cardButton.enabled = !card.isUnPlayable ;
         
         cardButton.alpha = ( card.isUnPlayable ? 0.3 : 1.0 );
+        
     }
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    
+    // update flip message
+    self.flipMessageLabel.text = [NSString stringWithFormat:@"%@", self.game.flipMessage ];
     
 }
-
 
 - (void) setFlipsCount:(int) flipsCount
 {
