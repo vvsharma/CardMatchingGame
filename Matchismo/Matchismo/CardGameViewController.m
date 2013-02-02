@@ -16,6 +16,7 @@
 
 @property (nonatomic) int flipsCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+- (IBAction)dealButton:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *scoreLabel;
 @property (weak, nonatomic) IBOutlet UITextField *flipMessageLabel;
@@ -27,17 +28,25 @@
 @end
 
 @implementation CardGameViewController
+@synthesize game = _game;
 
-- (CardMatchingGame *)game
+- (void) setGame : (CardMatchingGame *) newGame ;
+{
+    _game = newGame ;
+    
+}
+
+
+- (CardMatchingGame *) game
 {
     if (!_game) // do this the first time only
     {
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                   usingdeck:[[PlayingCardDeck alloc] init]];
-        
     }
     return _game ;
 }
+
 
 - (void) setCardButtons:(NSArray *)cardButtons
 {
@@ -96,4 +105,15 @@
 
 
 
+- (IBAction)dealButton:(UIButton *)sender {
+    
+    
+    CardMatchingGame *newGame = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingdeck:[[PlayingCardDeck alloc] init]];
+    
+    self.game = newGame ;
+    
+    [self updateUI]; 
+    
+    
+}
 @end
